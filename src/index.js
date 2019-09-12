@@ -2,23 +2,27 @@ import getCookie from './helpers/getCookie';
 import buildLinks from './helpers/buildLinks';
 
 (function() {
-    const sessionID = getCookie('session-id');
-    setTimeout(() => {
-        let links = document.querySelectorAll('a');
-        [...links].map(link => {
-            let newLink = buildLinks(link.href, sessionID)
-            
-            if (newLink !== undefined) {
-                link.href = newLink;
-            } else {
-                console.log(link.href);
-            }
+    let CB = {};
+    window.CB = CB;
+    CB.sessionID = getCookie('session-id');
 
-            link.addEventListener('click', () => {
-                event.preventDefault();
+    CB.buildLinks = (offerings = false) => {
+        setTimeout(() => {
+            let links = document.querySelectorAll('a');
 
-                window.location.href = link.href;
+            [...links].map(link => {
+                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings)
+                
+                if (newLink !== undefined) {
+                    link.href = newLink;
+                }
+    
+                link.addEventListener('click', () => {
+                    event.preventDefault();
+    
+                    window.location.href = link.href;
+                });
             });
-        });
-    }, 1000);
+        }, 1000);
+    }
 }());
