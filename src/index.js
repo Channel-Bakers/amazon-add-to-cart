@@ -24,6 +24,7 @@ import buildLinks from './helpers/buildLinks';
 
             [...HOT_SPOTS].map(hotspot => {
                 hotspot.addEventListener('click', () => {
+                    console.log('Hotspot clicked');
                     setTimeout(() => {
                         const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
 
