@@ -16,6 +16,8 @@ import buildLinks from './helpers/buildLinks';
                 if (newLink !== undefined) {
                     link.href = newLink;
                 }
+
+                link.removeEventListener('click');
     
                 link.addEventListener('click', () => {
                     event.preventDefault();
