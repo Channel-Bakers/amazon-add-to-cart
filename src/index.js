@@ -8,10 +8,10 @@ import buildLinks from './helpers/buildLinks';
 
     CB.buildLinks = (offerings = false) => {
         setTimeout(() => {
-            let links = document.querySelectorAll('a');
+            const LINKS = document.querySelectorAll('a');
 
-            [...links].map(link => {
-                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings)
+            [...LINKS].map(link => {
+                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings);
                 
                 if (newLink !== undefined) {
                     let newNode = link.cloneNode(true);
@@ -19,6 +19,31 @@ import buildLinks from './helpers/buildLinks';
                     newNode.href = newLink;
                 }
             });
+
+            const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
+
+            [...HOT_SPOTS].map(hotspot => {
+                hotspot.addEventListener('click', () => {
+                    setTimeout(() => {
+                        const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+
+                        [...MODALS].map(modal => {
+                            const LINKS = modal.querySelectorAll('a');
+
+                            [...LINKS].map(link => {
+                                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings);
+
+                                if (newLink !== undefined) {
+                                    let newNode = link.cloneNode(true);
+                                    link.parentNode.replaceChild(newNode, link);
+                                    newNode.href = newLink;
+                                }
+                            });
+                        })
+                    }, 500);
+                })
+            });
+
         }, 1000);
     }
 }());
