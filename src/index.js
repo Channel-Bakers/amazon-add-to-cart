@@ -11,13 +11,12 @@ import buildLinks from './helpers/buildLinks';
             let links = document.querySelectorAll('a');
 
             [...links].map(link => {
-                let oldNode = link;
-                let newNode = link.cloneNode(true);
-
-                let newLink = buildLinks(newNode, CB.sessionID || getCookie('session-id'), offerings)
+                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings)
                 
                 if (newLink !== undefined) {
-                    link.parentNode.replaceChild(newNode, oldNode);
+                    let newNode = link.cloneNode(true);
+                    link.parentNode.replaceChild(newNode, link);
+                    newNode.href = newLink;
                 }
             });
         }, 1000);
