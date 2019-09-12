@@ -11,19 +11,14 @@ import buildLinks from './helpers/buildLinks';
             let links = document.querySelectorAll('a');
 
             [...links].map(link => {
-                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings)
+                let oldNode = link;
+                let newNode = link.cloneNode(true);
+
+                let newLink = buildLinks(newNode, CB.sessionID || getCookie('session-id'), offerings)
                 
                 if (newLink !== undefined) {
-                    link.href = newLink;
+                    link.parentNode.replaceChild(newNode, oldNode);
                 }
-
-                link.removeEventListener('click');
-    
-                link.addEventListener('click', () => {
-                    event.preventDefault();
-    
-                    window.location.href = link.href;
-                });
             });
         }, 1000);
     }
