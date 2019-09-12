@@ -22,6 +22,8 @@ import buildLinks from './helpers/buildLinks';
 
             const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
 
+            console.log(HOT_SPOTS);
+
             [...HOT_SPOTS].map(hotspot => {
                 hotspot.addEventListener('click', () => {
                     console.log('Hotspot clicked');
