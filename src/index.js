@@ -13,6 +13,12 @@ import buildLinks from './helpers/buildLinks';
             } else {
                 console.log(link.href);
             }
+
+            link.addEventListener('click', () => {
+                event.preventDefault();
+
+                window.location.href = link.href;
+            });
         });
-    }, 3000);
+    }, 1000);
 }());
