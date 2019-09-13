@@ -1,13 +1,10 @@
 export const addToCartInBackground = link => {
 	event.preventDefault();
 
-	console.log(link);
-
 	fetch(link)
 		.then(response => {
 			response.text()
-		.then(data => {
-			console.log(data);
+		.then(() => {
 			return false;
 		});
 	});
@@ -15,8 +12,6 @@ export const addToCartInBackground = link => {
 
 export const addToCartInNewWindow = link => {
 	event.preventDefault();
-
-	console.log(link);
 
 	if (window.innerWidth <= 640) {
         // if width is smaller then 640px, create a temporary a elm that will open the link in new tab
