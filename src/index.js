@@ -6,47 +6,36 @@ import buildLinks from './helpers/buildLinks';
     window.CB = CB;
     CB.sessionID = getCookie('session-id');
 
-    CB.buildLinks = (offerings = false) => {
-        setTimeout(() => {
-            const LINKS = document.querySelectorAll('a');
+    const replaceElements = (links, offerings) => {
+        [...links].map(link => {
+            let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings);
 
-            [...LINKS].map(link => {
-                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings);
-                
-                if (newLink !== undefined) {
-                    let newNode = link.cloneNode(true);
-                    link.parentNode.replaceChild(newNode, link);
-                    newNode.href = newLink;
-                }
-            });
+            if (newLink !== undefined) {
+                let newNode = link.cloneNode(true);
+                link.parentNode.replaceChild(newNode, link);
+                newNode.href = newLink;
+            }
+        });
+    };
 
-            const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
+    CB.init = (offerings = false) => {
+        const LINKS = document.querySelectorAll('a');
+        const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
 
-            console.log(HOT_SPOTS);
+        replaceElements(LINKS, offerings);
 
-            [...HOT_SPOTS].map(hotspot => {
-                hotspot.addEventListener('click', () => {
-                    console.log('Hotspot clicked');
-                    setTimeout(() => {
-                        const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+        [...HOT_SPOTS].map(hotspot => {
+            hotspot.addEventListener('click', () => {
+                setTimeout(() => {
+                    const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
 
-                        [...MODALS].map(modal => {
-                            const LINKS = modal.querySelectorAll('a');
+                    [...MODALS].map(modal => {
+                        const LINKS = modal.querySelectorAll('a');
 
-                            [...LINKS].map(link => {
-                                let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), offerings);
-
-                                if (newLink !== undefined) {
-                                    let newNode = link.cloneNode(true);
-                                    link.parentNode.replaceChild(newNode, link);
-                                    newNode.href = newLink;
-                                }
-                            });
-                        })
-                    }, 500);
-                })
-            });
-
-        }, 1000);
+                        replaceElements(LINKS, offerings);
+                    })
+                }, 500);
+            })
+        });
     }
 }());
