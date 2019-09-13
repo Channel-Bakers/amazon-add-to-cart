@@ -7,14 +7,6 @@ import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartAc
     window.CB = CB;
     CB.sessionID = getCookie('session-id');
 
-    const addEventListeners = element => {
-        if (CB.action === 'background') {
-            element.addEventListener('click', addToCartInBackground);
-        } else if (CB.action === 'window') {
-            element.addEventListener('click', addToCartInNewWindow);
-        }
-    }
-
     const buildElements = (links) => {
         [...links].map(link => {
             let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || {});
@@ -24,10 +16,18 @@ import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartAc
                 link.parentNode.replaceChild(newNode, link);
                 newNode.href = newLink;
 
-                if (CB.action === 'tab') {
-                    newNode.setAttribute('target', '_blank');
-                } else {
-                    addEventListeners(link);
+                switch(CB.action) {
+                    case 'tab':
+                        newNode.setAttribute('target', '_blank');
+                        break;
+                    case 'window':
+                        newNode.addEventListener('click', addToCartInNewWindow);
+                        break;
+                    case 'background':
+                        newNode.addEventListener('click', addToCartInBackground);
+                        break;
+                    default:
+                        return;
                 }
             }
         });
