@@ -21,10 +21,14 @@ import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartAc
                         newNode.setAttribute('target', '_blank');
                         break;
                     case 'window':
-                        newNode.addEventListener('click', addToCartInNewWindow);
+                        newNode.addEventListener('click', () => {
+                            addToCartInNewWindow(newLink);
+                        });
                         break;
                     case 'background':
-                        newNode.addEventListener('click', addToCartInBackground);
+                        newNode.addEventListener('click', () => {
+                            addToCartInBackground(newLink);
+                        });
                         break;
                     default:
                         return;
