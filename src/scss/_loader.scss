@@ -42,6 +42,15 @@
 		top: 15px;
 		right: 15px;
 		z-index: 3;
+		color: rgb(255, 255, 255);
+		background: rgb(78, 78, 78);
+		border-radius: 30px;
+		padding: 6px 10px;
+		font-size: 20px;
+
+		&:hover {
+			color: #fff;
+		}
 	}
 
 	background: #fff;
