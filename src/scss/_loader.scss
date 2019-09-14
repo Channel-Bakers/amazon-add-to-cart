@@ -54,9 +54,14 @@
 	}
 
 	background: #fff;
+	padding: 15px;
 	border-radius: 4px;
 	box-shadow: 0 5px 10px rgba(25, 25, 25, 0.3);
 	margin: auto;
 
 	transition: all .3s ease-in-out;
+
+	img {
+		width: 25px;
+	}
 }

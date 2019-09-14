@@ -3,7 +3,7 @@ export const addToCartInBackground = link => {
     
     console.log(event.target);
 
-    const TARGET = event.target;
+    const TARGET = event.target.closest('a');
     const IS_BUY_BOX = TARGET.getAttribute('type') === 'BuyBoxAddToCart';
 
     if (!IS_BUY_BOX) {
@@ -30,9 +30,12 @@ export const addToCartInBackground = link => {
 		.then(() => {
 
             if (!IS_BUY_BOX) {
-                loaderWrap.classList.remove('is-loading');
-                loaderWrap.classList.add('is-loaded');
-                loader.innerHTML = `
+                const LOADER_WRAP = document.querySelector('loading-wrapper');
+                const LOADER = document.querySelector('loading');
+
+                LOADER_WRAP.classList.remove('is-loading');
+                LOADER_WRAP.classList.add('is-loaded');
+                LOADER.innerHTML = `
                     <a href="https://www.amazon.com/gp/cart/view.html">View Cart</a>
                 `;
             }
