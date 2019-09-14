@@ -9,7 +9,7 @@ import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartAc
 
     const buildElements = (links) => {
         [...links].map(link => {
-            let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || {});
+            let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || []);
 
             if (newLink !== undefined) {
                 let newNode = link.cloneNode(true);
