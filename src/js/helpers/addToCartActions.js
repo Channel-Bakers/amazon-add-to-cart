@@ -17,7 +17,7 @@ export const addToCartInBackground = link => {
         loader.classList.add('loading');
 
         loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
-        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4/assets/img/loader.svg" />';
+        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4.6/assets/img/loader.svg" />';
 
         loaderContent.appendChild(loader);
         loaderWrap.appendChild(loaderContent);
