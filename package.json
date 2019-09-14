@@ -7,6 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {},
@@ -14,8 +20,15 @@
     "@babel/core": "^7.6.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.6.0",
+    "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "css-loader": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "url-polyfill": "^1.1.7",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"

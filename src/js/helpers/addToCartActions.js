@@ -1,10 +1,33 @@
 export const addToCartInBackground = link => {
-	event.preventDefault();
+    event.preventDefault();
+    
+    let loaderWrap = document.createElement('div'),
+        loaderContent = document.createElement('div'),
+        loader = document.createElement('div');
+
+    loaderWrap.classList.add('loading-wrapper');
+    loaderWrap.classList.add('is-loading');
+    loaderContent.classList.add('loading-content');
+    loader.classList.add('loading');
+
+    loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4/assets/img/loader.svg" />';
+    loaderContent.innerHTML = '<a class="loading-close">&times;</a>';
+    loaderContent.innerHTML += loader;
+    loaderWrap.innerHTML = loaderContent;
+
+    document.body.appendChild(loaderWrap);
 
 	fetch(link)
 		.then(response => {
 			response.text()
 		.then(() => {
+
+            loaderWrap.classList.remove('.is-loading');
+            loaderWrap.classList.add('.is-loaded');
+            loader.innerHTML = `
+                <a href="https://www.amazon.com/gp/cart/view.html">View Cart</a>
+            `;
+
 			return false;
 		});
 	});

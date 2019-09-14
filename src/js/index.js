@@ -1,6 +1,7 @@
 import getCookie from './helpers/getCookie';
 import buildLinks from './helpers/buildLinks';
 import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartActions';
+import '../scss/main.scss';
 
 (function() {
     let CB = {};
