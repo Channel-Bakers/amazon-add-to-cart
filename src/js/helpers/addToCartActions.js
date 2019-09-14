@@ -12,9 +12,9 @@ export const addToCartInBackground = link => {
 
     loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4/assets/img/loader.svg" />';
     loaderContent.innerHTML = '<a class="loading-close">&times;</a>';
-    loaderContent.innerHTML += loader;
-    loaderWrap.innerHTML = loaderContent;
 
+    loaderContent.appendChild(loader);
+    loaderWrap.appendChild(loaderContent);
     document.body.appendChild(loaderWrap);
 
 	fetch(link)
@@ -22,8 +22,8 @@ export const addToCartInBackground = link => {
 			response.text()
 		.then(() => {
 
-            loaderWrap.classList.remove('.is-loading');
-            loaderWrap.classList.add('.is-loaded');
+            loaderWrap.classList.remove('is-loading');
+            loaderWrap.classList.add('is-loaded');
             loader.innerHTML = `
                 <a href="https://www.amazon.com/gp/cart/view.html">View Cart</a>
             `;
