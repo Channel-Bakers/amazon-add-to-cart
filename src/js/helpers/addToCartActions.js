@@ -20,6 +20,8 @@ export const addToCartInBackground = link => {
         loaderContent.appendChild(loader);
         loaderWrap.appendChild(loaderContent);
         document.body.appendChild(loaderWrap);
+    } else {
+        TARGET.outerHTML = '<div class="loading"><img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4.6/assets/img/loader.svg" /></div>';
     }
 
 	fetch(link)
