@@ -5,10 +5,10 @@ export const addToCartInBackground = link => {
     const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart';
 
     let loaderIcon= document.createElement('img');
-    loaderIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loading.svg';
+    loaderIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loading.svg';
 
     let loadedIcon = document.createElement('img');
-    loadedIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loaded.svg';
+    loadedIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loaded.svg';
 
     if (!IS_BUY_BOX) {
         let loaderWrap = document.createElement('div'),
@@ -21,7 +21,7 @@ export const addToCartInBackground = link => {
         loader.classList.add('loading');
 
         // loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
-        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loading.svg" />';
+        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loading.svg" />';
 
         loaderContent.appendChild(loader);
         loaderWrap.appendChild(loaderContent);
@@ -29,7 +29,7 @@ export const addToCartInBackground = link => {
     } else {
         let loader = document.createElement('div');
         loader.classList.add('buy-box-loading');
-        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loading.svg" />';
+        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loading.svg" />';
 
         TARGET.innerHTML = '';
         TARGET.appendChild(loader);
@@ -47,7 +47,7 @@ export const addToCartInBackground = link => {
                 LOADER_WRAP.classList.remove('is-loading');
                 LOADER_WRAP.classList.add('is-loaded');
 
-                LOADER.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loaded.svg" />';
+                LOADER.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loaded.svg" />';
                 LOADER.innerHTML += '<h4>Added to Cart</h4>';
 
                 setTimeout(() => {
@@ -56,7 +56,7 @@ export const addToCartInBackground = link => {
             } else {
                 let loaded = document.createElement('div');
                 loaded.classList.add('buy-box-loaded');
-                loaded.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5.4/assets/img/loaded.svg" />';
+                loaded.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6/assets/img/loaded.svg" />';
                 loaded.innerHTML += '<h4>Added to Cart</h4>';
                 TARGET.closest('div').appendChild(loaded);
                 TARGET.outerHTML = '';
