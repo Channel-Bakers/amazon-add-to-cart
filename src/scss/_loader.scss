@@ -58,10 +58,41 @@
 	border-radius: 4px;
 	box-shadow: 0 5px 10px rgba(25, 25, 25, 0.3);
 	margin: auto;
-
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	transition: all .3s ease-in-out;
 
 	img {
 		width: 25px;
+	}
+
+	p {
+		margin: 6px 0 0 0;
+		color: #1faf37;
+		font-size: 20px;
+	}
+}
+
+.buy-box {
+	&-loader,
+	&-loaded {
+		padding: 8px;
+	
+		img {
+			width: 25px;
+		}
+	}
+
+	&-loaded {
+		display: flex;
+		align-items: center;
+
+		p {
+			margin: 0 0 0 6px;
+			color: #1faf37;
+			font-size: 12px;
+		}
 	}
 }
