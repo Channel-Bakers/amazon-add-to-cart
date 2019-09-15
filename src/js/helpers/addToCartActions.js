@@ -1,10 +1,8 @@
 export const addToCartInBackground = link => {
     event.preventDefault();
-    
-    console.log(event.target);
 
     const TARGET = event.target.closest('a');
-    const IS_BUY_BOX = TARGET.getAttribute('type') === 'BuyBoxAddToCart';
+    const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart';
 
     if (!IS_BUY_BOX) {
         let loaderWrap = document.createElement('div'),
