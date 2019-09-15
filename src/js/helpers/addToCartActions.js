@@ -5,10 +5,10 @@ export const addToCartInBackground = link => {
     const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart';
 
     let loaderIcon= document.createElement('img');
-    loaderIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4.8/assets/img/loading.svg';
+    loaderIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg';
 
     let loadedIcon = document.createElement('img');
-    loadedIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.4.8/assets/img/loaded.svg';
+    loadedIcon.src = 'https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg';
 
     if (!IS_BUY_BOX) {
         let loaderWrap = document.createElement('div'),
