@@ -21,7 +21,7 @@ export const addToCartInBackground = link => {
         loader.classList.add('loading');
 
         loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
-        loader.appendChild(loaderIcon);
+        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg" />';
 
         loaderContent.appendChild(loader);
         loaderWrap.appendChild(loaderContent);
@@ -30,7 +30,7 @@ export const addToCartInBackground = link => {
         let loader = document.createElement('div');
         loader.classList.add('buy-box-loading');
         TARGET.outerHTML = '';
-        TARGET.appendChild(loaderIcon);
+        TARGET.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg" />';
     }
 
 	fetch(link)
@@ -39,21 +39,20 @@ export const addToCartInBackground = link => {
 		.then(() => {
 
             if (!IS_BUY_BOX) {
-                const LOADER_WRAP = document.querySelector('loading-wrapper');
-                const LOADER = document.querySelector('loading');
+                const LOADER_WRAP = document.querySelector('.loading-wrapper');
+                const LOADER = document.querySelector('.loading');
 
                 LOADER_WRAP.classList.remove('is-loading');
                 LOADER_WRAP.classList.add('is-loaded');
 
-                LOADER.innerHTML = '';
-                LOADER.appendChild(loadedIcon);
+                LOADER.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
                 LOADER.innerHTML += '<p>Added to Cart</p>';
                 LOADER.innerHTML += '<a href="https://www.amazon.com/gp/cart/view.html">View Cart</a>';
             } else {
                 let loaded = document.createElement('div');
                 loaded.classList.add('buy-box-loaded');
-                loaded.appendChild(loadedIcon);
-                TARGET.outerHTML = '';
+                loaded.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
+                TARGET.innerHTML = '';
                 TARGET.appendChild(loaded);
                 TARGET.innerHTML += '<p>Added to Cart</p>';
             }
