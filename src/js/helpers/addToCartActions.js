@@ -20,7 +20,7 @@ export const addToCartInBackground = link => {
         loaderContent.classList.add('loading-content');
         loader.classList.add('loading');
 
-        loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
+        // loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
         loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg" />';
 
         loaderContent.appendChild(loader);
@@ -49,14 +49,17 @@ export const addToCartInBackground = link => {
 
                 LOADER.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
                 LOADER.innerHTML += '<p>Added to Cart</p>';
-                LOADER.innerHTML += '<a href="https://www.amazon.com/gp/cart/view.html">View Cart</a>';
+
+                setTimeout(() => {
+                    LOADER_WRAP.outerHTML = '';
+                }, 1000);
             } else {
                 let loaded = document.createElement('div');
                 loaded.classList.add('buy-box-loaded');
                 loaded.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
-                TARGET.innerHTML = '';
-                TARGET.appendChild(loaded);
-                TARGET.innerHTML += '<p>Added to Cart</p>';
+                loaded.innerHTML += '<p>Added to Cart</p>';
+                TARGET.closest('div').appendChild(loaded);
+                TARGET.outerHTML = '';
             }
 
 			return false;
