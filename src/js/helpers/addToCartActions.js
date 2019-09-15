@@ -29,8 +29,10 @@ export const addToCartInBackground = link => {
     } else {
         let loader = document.createElement('div');
         loader.classList.add('buy-box-loading');
-        TARGET.outerHTML = '';
-        TARGET.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg" />';
+        loader.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loading.svg" />';
+
+        TARGET.innerHTML = '';
+        TARGET.appendChild(loader);
     }
 
 	fetch(link)
