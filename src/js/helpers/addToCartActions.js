@@ -48,7 +48,7 @@ export const addToCartInBackground = link => {
                 LOADER_WRAP.classList.add('is-loaded');
 
                 LOADER.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
-                LOADER.innerHTML += '<p>Added to Cart</p>';
+                LOADER.innerHTML += '<h4>Added to Cart</h4>';
 
                 setTimeout(() => {
                     LOADER_WRAP.outerHTML = '';
@@ -57,7 +57,7 @@ export const addToCartInBackground = link => {
                 let loaded = document.createElement('div');
                 loaded.classList.add('buy-box-loaded');
                 loaded.innerHTML = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.5/assets/img/loaded.svg" />';
-                loaded.innerHTML += '<p>Added to Cart</p>';
+                loaded.innerHTML += '<h4>Added to Cart</h4>';
                 TARGET.closest('div').appendChild(loaded);
                 TARGET.outerHTML = '';
             }

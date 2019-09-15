@@ -76,10 +76,15 @@
 		width: 25px;
 	}
 
-	p {
+	h4 {
+		padding: 0;
 		margin: 15px 0 0 0;
-		color: #1faf37;
+		color: #007600;
 		font-size: 20px;
+		font-weight: 700;
+		line-height: 1.255;
+		text-rendering: optimizeLegibility;
+		font-family: "Amazon Ember", Arial, sans-serif;
 	}
 }
 
@@ -89,7 +94,7 @@
 		padding: 8px;
 	
 		img {
-			width: 25px;
+			width: 15px;
 		}
 	}
 
@@ -97,10 +102,15 @@
 		display: flex;
 		align-items: center;
 
-		p {
-			margin: 0 0 0 6px;
-			color: #1faf37;
-			font-size: 12px;
+		h4 {
+			padding: 0;
+			margin: 6px 0 0 0;
+			color: #007600;
+			font-size: 13px;
+			font-weight: 700;
+			line-height: 1.255;
+			text-rendering: optimizeLegibility;
+			font-family: "Amazon Ember", Arial, sans-serif;
 		}
 	}
 }
