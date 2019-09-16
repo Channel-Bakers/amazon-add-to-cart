@@ -1,7 +1,7 @@
 .lp-product-info-wrap {
 	.a-price {
 		opacity: 0;
-		transition: opacity .2s ease;
+		transition: opacity .2s ease-in;
 	}
 }
 
@@ -91,8 +91,7 @@
 .buy-box {
 	&-loading,
 	&-loaded {
-		padding: 8px 0;
-		margin: 6px 0 0 0;
+		margin: 8px 0 7px !important;
 	
 		img {
 			width: 15px;
