@@ -2,7 +2,7 @@
 	.a-price {
 		opacity: 0;
 		
-		.loaded {
+		&.loaded {
 			opacity: 1;
 			transition: opacity .2s ease-in;
 		}

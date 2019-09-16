@@ -51,12 +51,12 @@ export const addToCartInBackground = link => {
                     LOADER_WRAP.outerHTML = '';
                 }, 1000);
             } else {
-                let loaded = document.createElement('div');
-                loaded.classList.add('buy-box-loaded');
-                loaded.innerHTML = LOADED_ICON;
-                loaded.innerHTML += '<h4>Added to Cart</h4>';
-                TARGET.closest('div').appendChild(loaded);
-                TARGET.outerHTML = '';
+                // let loaded = document.createElement('div');
+                // loaded.classList.add('buy-box-loaded');
+                // loaded.innerHTML = LOADED_ICON;
+                // loaded.innerHTML += '<h4>Added to Cart</h4>';
+                // TARGET.closest('div').appendChild(loaded);
+                // TARGET.outerHTML = '';
             }
 
 			return false;
