@@ -46,6 +46,8 @@ export default (a, sessionID, offerings = false) => {
         if (sessionID !== undefined) {
             if (url.searchParams.has('offeringID.1')) {
                 url.searchParams.set('session-id', sessionID);
+            } else {
+                return undefined;
             }
         }
         
