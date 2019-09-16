@@ -31,7 +31,7 @@ export default (a, sessionID, offerings = false) => {
                         dollars.innerHTML = PRICE.split('.')[0];
                         cents.innerHTML = PRICE.split('.')[1];
     
-                        PRICE_BLOCK.style.opacity = 1;
+                        PRICE_BLOCK.classList.add('loaded');
         
                         url.href = 'https://www.amazon.com/gp/item-dispatch/';
                         url.searchParams.set('submit.addToCart', 'addToCart')
