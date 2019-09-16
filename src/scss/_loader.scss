@@ -91,7 +91,8 @@
 .buy-box {
 	&-loading,
 	&-loaded {
-		margin: 8px 0 7px !important;
+		height: 35px;
+		margin: 4px 0 2px;
 	
 		img {
 			width: 15px;
