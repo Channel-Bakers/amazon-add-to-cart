@@ -20,18 +20,18 @@ export default (a, sessionID, offerings = false) => {
                 if (!isEmpty(offering)) {
                     if (offering.asin === ASIN) {
                         const OFFERING_ID = offering.offeringID;
-                        const PRICE = offering.price;
+                        // const PRICE = offering.price;
     
-                        const PRODUCT_INFO = a.closest('.lp-product-wrap');
-                        const PRICE_BLOCK = PRODUCT_INFO.querySelector('.lp-product-info-wrap .a-price');
+                        // const PRODUCT_INFO = a.closest('.lp-product-wrap');
+                        // const PRICE_BLOCK = PRODUCT_INFO.querySelector('.lp-product-info-wrap .a-price');
                         
-                        let dollars = PRICE_BLOCK.querySelector('.a-price-whole');
-                        let cents = PRICE_BLOCK.querySelector('.a-price-fraction');
+                        // let dollars = PRICE_BLOCK.querySelector('.a-price-whole');
+                        // let cents = PRICE_BLOCK.querySelector('.a-price-fraction');
     
-                        dollars.innerHTML = PRICE.split('.')[0];
-                        cents.innerHTML = PRICE.split('.')[1];
+                        // dollars.innerHTML = PRICE.split('.')[0];
+                        // cents.innerHTML = PRICE.split('.')[1];
     
-                        PRICE_BLOCK.classList.add('loaded');
+                        // PRICE_BLOCK.classList.add('loaded');
         
                         url.href = 'https://www.amazon.com/gp/item-dispatch/';
                         url.searchParams.set('submit.addToCart', 'addToCart')
