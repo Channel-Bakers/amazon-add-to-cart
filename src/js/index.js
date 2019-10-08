@@ -8,8 +8,8 @@ import '../scss/main.scss';
     window.CB = CB;
     CB.sessionID = getCookie('session-id');
 
-    const buildElements = (links) => {
-        [...links].map(link => {
+    const buildElement = link => {
+        // [...links].map(link => {
             let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || []);
 
             if (newLink !== undefined) {
@@ -35,27 +35,46 @@ import '../scss/main.scss';
                         return;
                 }
             }
-        });
+        // });
     };
 
     CB.init = () => {
+        const handleIntersection = (entries, OBSERVER) => {
+            entries.forEach(entry => {
+                if (entry.intersectionRatio > 0) {
+                    buildElement(entry);
+                }
+            });
+        };
+
+        const OBSERVER_OPTIONS = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const OBSERVER = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
+
         const LINKS = document.querySelectorAll('a');
-        const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
 
-        buildElements(LINKS);
-
-        [...HOT_SPOTS].map(hotspot => {
-            hotspot.addEventListener('click', () => {
-                setTimeout(() => {
-                    const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
-
-                    [...MODALS].map(modal => {
-                        const LINKS = modal.querySelectorAll('a');
-
-                        buildElements(LINKS);
-                    })
-                }, 500);
-            })
+        LINKS.forEach(link => {
+            OBSERVER.observe(link);
         });
+
+        // const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
+
+        // HOT_SPOTS.map(hotspot => {
+        //     hotspot.addEventListener('click', () => {
+        //         setTimeout(() => {
+        //             const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+
+        //             MODALS.map(modal => {
+        //                 const LINKS = modal.querySelectorAll('a');
+
+        //                 buildElements(LINKS);
+        //             })
+        //         }, 500);
+        //     })
+        // });
     }
 }());
