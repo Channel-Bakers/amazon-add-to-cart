@@ -16,6 +16,7 @@ import '../scss/main.scss';
                 let newNode = link.cloneNode(true);
                 link.parentNode.replaceChild(newNode, link);
                 newNode.href = newLink;
+                newNode.classList.add('loaded');
 
                 switch(CB.action) {
                     case 'tab':
@@ -42,7 +43,8 @@ import '../scss/main.scss';
         const handleIntersection = (entries, OBSERVER) => {
             entries.forEach(entry => {
                 if (entry.intersectionRatio > 0) {
-                    buildElement(entry.target);
+                    if (entry.target.querySelector('img').getAttribute('src') && !entry.target.classList.contains('loaded'))
+                        buildElement(entry.target);
                 }
             });
         };
@@ -50,7 +52,7 @@ import '../scss/main.scss';
         const OBSERVER_OPTIONS = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1
+            threshold: [0, 0.25, 0.5, 0.75, 1]
         };
 
         const OBSERVER = new IntersectionObserver(handleIntersection, OBSERVER_OPTIONS);
