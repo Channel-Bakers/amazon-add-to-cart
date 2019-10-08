@@ -8,54 +8,87 @@ import '../scss/main.scss';
     window.CB = CB;
     CB.sessionID = getCookie('session-id');
 
-    const buildElements = (links) => {
-        [...links].map(link => {
-            let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || []);
+    const buildElement = (link) => {
+        let newLink = buildLinks(link, CB.sessionID || getCookie('session-id'), CB.offerings || []);
 
-            if (newLink !== undefined) {
-                let newNode = link.cloneNode(true);
-                link.parentNode.replaceChild(newNode, link);
-                newNode.href = newLink;
+        if (newLink !== undefined) {
+            let newNode = link.cloneNode(true);
+            link.parentNode.replaceChild(newNode, link);
+            newNode.href = newLink;
 
-                switch(CB.action) {
-                    case 'tab':
-                        newNode.setAttribute('target', '_blank');
-                        break;
-                    case 'window':
-                        newNode.addEventListener('click', () => {
-                            addToCartInNewWindow(newLink);
-                        });
-                        break;
-                    case 'background':
-                        newNode.addEventListener('click', () => {
-                            addToCartInBackground(newLink);
-                        });
-                        break;
-                    default:
-                        return;
-                }
+            switch(CB.action) {
+                case 'tab':
+                    newNode.setAttribute('target', '_blank');
+                    break;
+                case 'window':
+                    newNode.addEventListener('click', () => {
+                        addToCartInNewWindow(newLink);
+                    });
+                    break;
+                case 'background':
+                    newNode.addEventListener('click', () => {
+                        addToCartInBackground(newLink);
+                    });
+                    break;
+                default:
+                    return;
             }
-        });
+        }
     };
 
     CB.init = () => {
         const LINKS = document.querySelectorAll('a');
         const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
+        const QUEUE = [];
 
-        buildElements(LINKS);
+        if (LINKS) {
+            [...LINKS].forEach(link => {
+                let image = link.querySelector('img');
+    
+                if (image && !image.getAttribute('src')) {
+                    QUEUE.push(link);
+                } else {
+                    buildElement(link);
+                }
+            });
 
-        [...HOT_SPOTS].map(hotspot => {
-            hotspot.addEventListener('click', () => {
-                setTimeout(() => {
-                    const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+            [...LINKS].map(link => {
+                if (!QUEUE.includes(link)) {
+                    buildElement(link);
+                }
+            });
+        }
 
-                    [...MODALS].map(modal => {
-                        const LINKS = modal.querySelectorAll('a');
+        if (QUEUE) {
+            QUEUE.forEach(link => {
+                let image = link.querySelector('img');
+    
+                if (image && !image.getAttribute('src')) {
+                    setTimeout(() => {
+                        buildElement(link);
+                    }, 500);
+                } else {
+                    buildElement(link);
+                }
+            });
+        }
 
-                        buildElements(LINKS);
-                    })
-                }, 500);
-            })
-        });
+        if (HOT_SPOTS) {
+            [...HOT_SPOTS].map(hotspot => {
+                hotspot.addEventListener('click', () => {
+                    setTimeout(() => {
+                        const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+    
+                        [...MODALS].map(modal => {
+                            const LINKS = modal.querySelectorAll('a');
+    
+                            [...LINKS].forEach(link => {
+                                buildElement(link);
+                            })
+                        })
+                    }, 500);
+                })
+            });
+        }
     }
 }());
