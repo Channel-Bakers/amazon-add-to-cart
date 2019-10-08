@@ -42,6 +42,7 @@ import '../scss/main.scss';
         const handleIntersection = (entries, OBSERVER) => {
             entries.forEach(entry => {
                 if (entry.intersectionRatio > 0) {
+                    console.log(entry);
                     buildElement(entry);
                 }
             });
