@@ -53,15 +53,7 @@ export default (carousels) => {
 								const ENTRY_POINT = INFO_WRAP.querySelector('.a-price').nextSibling;
 								const REG_PRICE = offering.regPrice;
 
-								const REG_PRICE_WRAP = `
-									<span class="a-letter-space"></span>
-									<span class="a-text-strike a-price" data-a-color="tertiary" data-a-size="mini">
-										<span class="a-price-symbol">$</span>
-										<span class="a-price-whole">${REG_PRICE.split('.')[0]}</span>
-										<span class="a-price-decimal">.</span>
-										<span class="a-price-fraction">${REG_PRICE.split('.')[1]}</span>
-									</span>
-								`;
+								const REG_PRICE_WRAP = `<span class="a-letter-space"></span><span class="a-text-strike a-price" data-a-color="tertiary" data-a-size="mini"><span class="a-price-symbol">$</span><span class="a-price-whole">${REG_PRICE.split('.')[0]}</span><span class="a-price-decimal">.</span><span class="a-price-fraction">${REG_PRICE.split('.')[1]}</span></span>`;
 
 								ENTRY_POINT.outerHTML = REG_PRICE_WRAP.trim();
 							}
