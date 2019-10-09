@@ -1,10 +1,12 @@
 'use strict';
 
-export default async (carousels) => {
+import buildATC from "./buildATC";
+
+export default (carousels) => {
 	carousels.forEach(carousel => {
 		const ITEMS = carousel.querySelectorAll('.carousel-product-list-item');
 
-		ITEMS.forEach(item => {
+		ITEMS.forEach(async item => {
 			const ASIN = item.querySelector('div[data-asin]').getAttribute('data-asin');
 
 			if (!item.querySelector('a[data-component-type="CarouselAddToCart"]')) {
@@ -18,7 +20,7 @@ export default async (carousels) => {
 				ATC_BTN.href = PDP_LINK;
 				ATC_BTN.classList.add('dacx-a-reset');
 				ATC_BTN.setAttribute('data-component-type', 'CarouselAddToCart');
-				ATC_BTN.setAttribute('data-component-id', ASIN);
+				ATC_BTN.setAttribute('data-component-id', `${ASIN}_ATC`);
 				ATC_BTN.innerHTML = `
 					<span class="lp-button-wrap ">
 						<span class="a-button a-button-beside-text a-button-primary">
@@ -33,7 +35,7 @@ export default async (carousels) => {
 				ATC_WRAPPER.append(ATC_BTN);
 				ENTRY_POINT.append(ATC_WRAPPER);
 
-				buildElement(ATC_BTN);
+				await buildATC(ATC_BTN);
 			}
 		});
 	});

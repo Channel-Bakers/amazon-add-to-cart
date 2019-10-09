@@ -1,11 +1,6 @@
 import getCookie from './helpers/getCookie';
-import buildLink from './helpers/buildLink';
-import isBuyBox from './helpers/isBuyBoxATC';
-import isLinkedImage from './helpers/isLinkedImage';
-import isCarouselATC from './helpers/isCarouselATC';
-import buildBuyBox from './helpers/buildBuyBox';
+import buildATC from './helpers/buildATC';
 import buildCarousels from './helpers/buildCarousels';
-import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartActions';
 import '../scss/main.scss';
 
 (function() {
@@ -13,44 +8,9 @@ import '../scss/main.scss';
     window.CB = CB;
     CB.sessionID = getCookie('session-id');
 
-    const buildElement = async link => {
-        if (isBuyBox(link)) {
-            link = await buildBuyBox(link);
-        } else if (!isLinkedImage(link) || !isCarouselATC(link)) {
-            return;
-        }
-
-        let newLink = await buildLink(link, CB.sessionID || getCookie('session-id'), CB.offerings || []);
-
-        if (newLink !== undefined) {
-            let newNode = link.cloneNode(true);
-            link.parentNode.replaceChild(newNode, link);
-            newNode.href = newLink;
-            newNode.classList.add('loaded');
-
-            switch(CB.action) {
-                case 'tab':
-                    newNode.setAttribute('target', '_blank');
-                    break;
-                case 'window':
-                    newNode.addEventListener('click', () => {
-                        addToCartInNewWindow(newLink);
-                    });
-                    break;
-                case 'background':
-                    newNode.addEventListener('click', () => {
-                        addToCartInBackground(newLink);
-                    });
-                    break;
-                default:
-                    return;
-            }
-        }
-    };
-
-    CB.init = async () => {
+    CB.init = () => {
         const CAROUSELS = document.querySelectorAll('.carousel-wrap');
-        await buildCarousels(CAROUSELS);
+        buildCarousels(CAROUSELS);
 
         const handleIntersection = (entries, OBSERVER) => {
             entries.forEach(async entry => {
@@ -59,10 +19,10 @@ import '../scss/main.scss';
 
                     if (img) {
                         if (img.getAttribute('src')) {
-                            await buildElement(entry.target);
+                            await buildATC(entry.target);
                         }
                     } else {
-                        await buildElement(entry.target);
+                        await buildATC(entry.target);
                     }
                 }
             });
