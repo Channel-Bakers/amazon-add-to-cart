@@ -1,6 +1,7 @@
 'use strict';
 
 import buildLink from "./buildLink";
+import attachEvents from "./attachEvents";
 
 export default (carousels) => {
 	carousels.forEach(carousel => {
@@ -31,17 +32,16 @@ export default (carousels) => {
 						</span>
 					</span>
 				`;
-				ATC_BTN.href = await buildLink(ATC_BTN, CB.sessionID || getCookie('session-id'), CB.offerings || []);
+				const NEW_LINK = await buildLink(ATC_BTN, CB.sessionID || getCookie('session-id'), CB.offerings || []);
+
+				if (NEW_LINK !== ATC_BTN.href) {
+					ATC_BTN.href = NEW_LINK;
+					attachEvents(ATC_BTN);
+				}
 
 				ATC_WRAPPER.append(ATC_BTN);
 				ENTRY_POINT.append(ATC_WRAPPER);
 			}
 		});
-
-		// ITEMS.forEach(async item => {
-		// 	const ATC_LINK = item.querySelector('a[data-component-type="CarouselAddToCart"]');
-
-		// 	await buildATC(ATC_LINK);
-		// });
 	});
 };
