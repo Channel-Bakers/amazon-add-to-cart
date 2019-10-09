@@ -6,7 +6,7 @@ export default (carousels) => {
 	carousels.forEach(carousel => {
 		const ITEMS = carousel.querySelectorAll('.carousel-product-list-item');
 
-		ITEMS.forEach(async item => {
+		ITEMS.forEach(item => {
 			const ASIN = item.querySelector('div[data-asin]').getAttribute('data-asin');
 
 			if (!item.querySelector('a[data-component-type="CarouselAddToCart"]')) {
@@ -34,9 +34,13 @@ export default (carousels) => {
 
 				ATC_WRAPPER.append(ATC_BTN);
 				ENTRY_POINT.append(ATC_WRAPPER);
-
-				await buildATC(ATC_BTN);
 			}
+		});
+
+		ITEMS.forEach(async item => {
+			const ATC_LINK = item.querySelector('a[data-component-type="CarouselAddToCart"]');
+
+			await buildATC(ATC_LINK);
 		});
 	});
 };
