@@ -32,6 +32,8 @@ export default async (carousels) => {
 
 				ATC_WRAPPER.append(ATC_BTN);
 				ENTRY_POINT.append(ATC_WRAPPER);
+
+				buildElement(ATC_BTN);
 			}
 		});
 	});

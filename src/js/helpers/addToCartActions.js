@@ -4,7 +4,7 @@ export const addToCartInBackground = link => {
     event.preventDefault();
 
     const TARGET = event.target.closest('a');
-    const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart';
+    const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart' || TARGET.getAttribute('data-component-type') === 'CarouselAddToCart';
 
     const LOADER_ICON = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6.3/assets/img/loading.svg" />';
     const LOADED_ICON = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6.3/assets/img/loaded.svg" />';
