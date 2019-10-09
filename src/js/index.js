@@ -3,6 +3,7 @@ import buildLink from './helpers/buildLink';
 import isBuyBox from './helpers/isBuyBoxATC';
 import isLinkedImage from './helpers/isLinkedImage';
 import buildBuyBox from './helpers/buildBuyBox';
+import buildCarousels from './helpers/buildCarousels';
 import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartActions';
 import '../scss/main.scss';
 
@@ -46,7 +47,10 @@ import '../scss/main.scss';
         }
     };
 
-    CB.init = () => {
+    CB.init = async () => {
+        const CAROUSELS = document.querySelectorAll('.carousel-wrap');
+        await buildCarousels(CAROUSELS);
+
         const handleIntersection = (entries, OBSERVER) => {
             entries.forEach(async entry => {
                 if (entry.intersectionRatio > 0 && !entry.target.classList.contains('loaded')) {
