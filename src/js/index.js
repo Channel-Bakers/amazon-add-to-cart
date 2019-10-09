@@ -42,20 +42,20 @@ import '../scss/main.scss';
             OBSERVER.observe(link);
         });
 
-        const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
+        // const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
 
-        HOT_SPOTS.map(hotspot => {
-            hotspot.addEventListener('click', () => {
-                setTimeout(() => {
-                    const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
+        // HOT_SPOTS.map(hotspot => {
+        //     hotspot.addEventListener('click', () => {
+        //         setTimeout(() => {
+        //             const MODALS = document.querySelectorAll('div[class*="-lp-Modal"]');
 
-                    MODALS.map(modal => {
-                        const LINKS = modal.querySelectorAll('a');
+        //             MODALS.map(modal => {
+        //                 const LINKS = modal.querySelectorAll('a');
 
-                        buildElements(LINKS);
-                    })
-                }, 500);
-            })
-        });
+        //                 buildElements(LINKS);
+        //             })
+        //         }, 500);
+        //     })
+        // });
     }
 }());

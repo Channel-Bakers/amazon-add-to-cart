@@ -32,15 +32,16 @@ export default (carousels) => {
 						</span>
 					</span>
 				`;
+
+				ATC_WRAPPER.append(ATC_BTN);
+				ENTRY_POINT.append(ATC_WRAPPER);
+
 				const NEW_LINK = await buildLink(ATC_BTN, CB.sessionID || getCookie('session-id'), CB.offerings || []);
 
 				if (NEW_LINK !== ATC_BTN.href) {
 					ATC_BTN.href = NEW_LINK;
 					attachEvents(ATC_BTN);
 				}
-
-				ATC_WRAPPER.append(ATC_BTN);
-				ENTRY_POINT.append(ATC_WRAPPER);
 			}
 		});
 	});
