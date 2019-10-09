@@ -1,5 +1,6 @@
 'use strict';
 
+import {isEmpty} from './object';
 import buildLink from "./buildLink";
 import attachEvents from "./attachEvents";
 
