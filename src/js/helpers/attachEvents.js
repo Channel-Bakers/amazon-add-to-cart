@@ -14,12 +14,12 @@ export default (link) => {
 			break;
 		case 'window':
 			newNode.addEventListener('click', () => {
-				addToCartInNewWindow(newLink);
+				addToCartInNewWindow(link);
 			});
 			break;
 		case 'background':
 			newNode.addEventListener('click', () => {
-				addToCartInBackground(newLink);
+				addToCartInBackground(link);
 			});
 			break;
 		default:
