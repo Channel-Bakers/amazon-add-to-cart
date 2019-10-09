@@ -4,7 +4,7 @@ import {isEmpty} from './object';
 /**
  * 
  */
-export default (a, sessionID, offerings = false) => {
+export default async (a, sessionID, offerings = false) => {
     try {
         let url = new URL(a.href);
 
