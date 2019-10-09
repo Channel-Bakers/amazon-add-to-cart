@@ -1,24 +1,25 @@
 'use strict';
 
-import isBuyBox from './isBuyBoxATC';
-
 export const addToCartInBackground = link => {
     event.preventDefault();
 
     const TARGET = event.target.closest('a');
+    const IS_BUY_BOX = TARGET.getAttribute('data-component-type') === 'BuyBoxAddToCart';
+
     const LOADER_ICON = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6.3/assets/img/loading.svg" />';
     const LOADED_ICON = '<img src="https://cdn.jsdelivr.net/gh/rdimascio/atc@1.6.3/assets/img/loaded.svg" />';
 
-    if (!isBuyBox(link)) {
-        let loaderWrap = document.createElement('div')
-            , loaderContent = document.createElement('div')
-            , loader = document.createElement('div');
+    if (!IS_BUY_BOX) {
+        let loaderWrap = document.createElement('div'),
+            loaderContent = document.createElement('div'),
+            loader = document.createElement('div');
 
         loaderWrap.classList.add('loading-wrapper');
         loaderWrap.classList.add('is-loading');
         loaderContent.classList.add('loading-content');
         loader.classList.add('loading');
 
+        // loaderWrap.innerHTML = '<a class="loading-close">&times;</a>';
         loader.innerHTML = LOADER_ICON;
 
         loaderContent.appendChild(loader);
@@ -38,7 +39,7 @@ export const addToCartInBackground = link => {
 			response.text()
 		.then(() => {
 
-            if (!isBuyBox(link)) {
+            if (!IS_BUY_BOX) {
                 const LOADER_WRAP = document.querySelector('.loading-wrapper');
                 const LOADER = document.querySelector('.loading');
 
