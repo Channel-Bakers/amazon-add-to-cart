@@ -63,7 +63,7 @@ export default (carousels) => {
 									</span>
 								`;
 
-								ENTRY_POINT.outerHTML = REG_PRICE_WRAP;
+								ENTRY_POINT.outerHTML = REG_PRICE_WRAP.trim();
 							}
 						}
 					})
