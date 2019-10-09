@@ -42,9 +42,16 @@ import '../scss/main.scss';
     CB.init = () => {
         const handleIntersection = (entries, OBSERVER) => {
             entries.forEach(entry => {
-                if (entry.intersectionRatio > 0) {
-                    if (entry.target.querySelector('img').getAttribute('src') && !entry.target.classList.contains('loaded'))
-                        buildElement(entry.target);
+                if (entry.intersectionRatio > 0 && !entry.target.classList.contains('loaded')) {
+                    let img = entry.target.querySelector('img');
+
+                    if (img) {
+                        if (img.getAttribute('src')) {
+                            buildElement(entry.target);
+                        }
+                    } else {
+                        buildElement(entry.target);   
+                    }
                 }
             });
         };
