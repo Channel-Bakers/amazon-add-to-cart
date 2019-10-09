@@ -2,6 +2,7 @@ import getCookie from './helpers/getCookie';
 import buildLink from './helpers/buildLink';
 import isBuyBox from './helpers/isBuyBoxATC';
 import isLinkedImage from './helpers/isLinkedImage';
+import isCarouselATC from './helpers/isCarouselATC';
 import buildBuyBox from './helpers/buildBuyBox';
 import buildCarousels from './helpers/buildCarousels';
 import {addToCartInBackground, addToCartInNewWindow} from './helpers/addToCartActions';
@@ -15,7 +16,7 @@ import '../scss/main.scss';
     const buildElement = async link => {
         if (isBuyBox(link)) {
             link = await buildBuyBox(link);
-        } else if (!isLinkedImage(link)) {
+        } else if (!isLinkedImage(link) || !isCarouselATC(link)) {
             return;
         }
 
