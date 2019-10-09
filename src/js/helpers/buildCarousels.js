@@ -1,12 +1,12 @@
 'use strict';
 
-import buildATC from "./buildATC";
+import buildLink from "./buildLink";
 
 export default (carousels) => {
 	carousels.forEach(carousel => {
 		const ITEMS = carousel.querySelectorAll('.carousel-product-list-item');
 
-		ITEMS.forEach(item => {
+		ITEMS.forEach(async item => {
 			const ASIN = item.querySelector('div[data-asin]').getAttribute('data-asin');
 
 			if (!item.querySelector('a[data-component-type="CarouselAddToCart"]')) {
@@ -31,16 +31,17 @@ export default (carousels) => {
 						</span>
 					</span>
 				`;
+				ATC_BTN.href = await buildLink(ATC_BTN, CB.sessionID || getCookie('session-id'), CB.offerings || []);
 
 				ATC_WRAPPER.append(ATC_BTN);
 				ENTRY_POINT.append(ATC_WRAPPER);
 			}
 		});
 
-		ITEMS.forEach(async item => {
-			const ATC_LINK = item.querySelector('a[data-component-type="CarouselAddToCart"]');
+		// ITEMS.forEach(async item => {
+		// 	const ATC_LINK = item.querySelector('a[data-component-type="CarouselAddToCart"]');
 
-			await buildATC(ATC_LINK);
-		});
+		// 	await buildATC(ATC_LINK);
+		// });
 	});
 };

@@ -41,6 +41,10 @@ export default async (a, sessionID, offerings = false) => {
             })
         }
 
+        else {
+            console.log('Oops');
+        }
+
         // Add session-id parameter to any link with an offeringID.1 parameter
 
         if (sessionID !== undefined) {
