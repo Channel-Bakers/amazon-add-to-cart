@@ -8,10 +8,8 @@
     "build": "webpack"
   },
   "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "not ie < 9"
+    "> 1%",
+    "ie 10"
   ],
   "author": "",
   "license": "ISC",
