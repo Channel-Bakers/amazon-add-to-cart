@@ -62,9 +62,14 @@ export default async (a, sessionID, offerings = false) => {
 
                 let promoCodes = [];
 
+                if (ASIN_LIST.length) {
+                    url.href = 'https://www.amazon.com/gp/item-dispatch/';
+                    url.searchParams.set('submit.addToCart', 'addToCart');
+                }
+
                 // Let's loop over the list of ASINs and get
                 // the corresponding offer object from CB.offerings.
-                ASIN_LIST.forEach(asin => {
+                ASIN_LIST.forEach((asin, index) => {
 
                     // Loop through the offerings object and find matching ASIN.
                     offerings.map(offer => {
@@ -83,9 +88,7 @@ export default async (a, sessionID, offerings = false) => {
                                 ));
                             }
 
-                            url.href = 'https://www.amazon.com/gp/item-dispatch/';
-                            url.searchParams.set('submit.addToCart', 'addToCart')
-                            url.searchParams.set('offeringID.1', offer.offeringID);
+                            url.searchParams.set(`offeringID.${index + 1}`, offer.offeringID);
                         }
                     });
                 });
