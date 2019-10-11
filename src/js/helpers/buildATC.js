@@ -6,7 +6,6 @@ import isLinkedImage from './isLinkedImage';
 import buildBuyBox from './buildBuyBox';
 import attachEvents from './attachEvents';
 
-
 export default async link => {
 	if (isBuyBox(link)) {
 		link = await buildBuyBox(link);
