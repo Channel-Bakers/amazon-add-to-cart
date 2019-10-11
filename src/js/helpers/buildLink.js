@@ -73,8 +73,7 @@ export default async (a, sessionID, offerings = false) => {
 
                     // Loop through the offerings object and find matching ASIN.
                     offerings.forEach(offer => {
-                        if (!isEmpty(offer) && offer.asin == asin) {
-                            console.log(asin);
+                        if (!isEmpty(offer) && offer.asin === asin) {
                             
                             // If the offer has a promo, let's add the necessary attributes
                             // for our clipCoupon.js function to work.
