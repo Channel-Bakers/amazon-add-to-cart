@@ -63,7 +63,7 @@ const init = () => {
 	// });
 }
 
-function waitForGlobal(key, sub, callback) {
+var waitForGlobal = function(key, sub, callback) {
 	if (window[key]) {
 		if (sub) {
 			if (window[key][sub]) {
@@ -95,7 +95,7 @@ const watchForNewNodes = (mutations, observer) => {
 				NODE.hasAttribute('id') &&
 				NODE.getAttribute('id') === 'ad-landing-page-wrap'
 			) {
-				waitForGlobal('CB', 'offerings', init())
+				waitForGlobal('CB', 'offerings', init)
 				observer.disconnect()
 			}
 		}
@@ -112,17 +112,17 @@ const watchForNewNodes = (mutations, observer) => {
 		if (!document.getElementById('ad-landing-page-wrap')) {
 			OBSERVER.observe(TARGET_NODE, CONFIG)
 		} else {
-			waitForGlobal('CB', 'offerings', init())
+			waitForGlobal('CB', 'offerings', init)
 		}
 	} else {
 		if (!isAmazonAdvertising()) {
-			waitForGlobal('CB', 'offerings', init())
+			waitForGlobal('CB', 'offerings', init)
 		}
 	}
 
 	TABS.forEach((tab) => {
 		tab.addEventListener('click', () => {
-			waitForGlobal('CB', 'offerings', init())
+			waitForGlobal('CB', 'offerings', init)
 		})
 	})
 })()
