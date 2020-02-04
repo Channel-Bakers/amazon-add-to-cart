@@ -1,3 +1,4 @@
-'use strict';
+'use strict'
 
-export default (link) => link.getAttribute('data-component-type') === 'CarouselAddToCart';
+export default (link) =>
+	link.getAttribute('data-component-type') === 'CarouselAddToCart'
