@@ -51,9 +51,14 @@ export default async (a, sessionID, offerings = false) => {
 			}
 
 			// Let's work some voodoo magic on the LinkedImage components.
-			else if (a.getAttribute('data-component-type') === 'LinkedImage') {
+			else if (
+				a.getAttribute('data-component-type') === 'LinkedImage' &&
+				!url.searchParams.has('offeringID.1') &&
+				!url.searchParams.has('submit.addToCart')
+			) {
 				/**
-                Creative should build the URL's for the Linked Image components like so:
+				If the link does not already have the addToCart param or an offeringID pararm,
+				then Creative should build the URL's for the Linked Image components like so:
             
                 For Bundles (multiple products):
                 https://amazon.com/?bundle=1&asin=B234VEVE34&asin=B23BRTBJ45

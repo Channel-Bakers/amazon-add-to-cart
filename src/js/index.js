@@ -10,41 +10,41 @@ const init = () => {
 	const CAROUSELS = document.querySelectorAll('.carousel-wrap')
 	buildCarousels(CAROUSELS)
 
-	const handleIntersection = (entries, OBSERVER) => {
-		entries.forEach(async (entry) => {
-			if (
-				entry.intersectionRatio > 0 &&
-				!entry.target.classList.contains('loaded')
-			) {
-				let img = entry.target.querySelector('img')
-
-				if (img) {
-					if (img.getAttribute('src')) {
-						await buildATC(entry.target)
-					}
-				} else {
-					await buildATC(entry.target)
-				}
-			}
-		})
-	}
-
-	const OBSERVER_OPTIONS = {
-		root: null,
-		rootMargin: '0px',
-		threshold: [0, 0.25, 0.5, 0.75, 1],
-	}
-
-	const OBSERVER = new IntersectionObserver(
-		handleIntersection,
-		OBSERVER_OPTIONS
-	)
-
 	const LINKS = document.querySelectorAll('a')
-
-	LINKS.forEach((link) => {
-		OBSERVER.observe(link)
+	LINKS.forEach(async (link) => {
+		await buildATC(link)
+		// OBSERVER.observe(link)
 	})
+
+	// function handleIntersection(entries, OBSERVER) {
+	// 	entries.forEach(async (entry) => {
+	// 		if (
+	// 			entry.intersectionRatio > 0 &&
+	// 			!entry.target.classList.contains('loaded')
+	// 		) {
+	// 			let img = entry.target.querySelector('img')
+
+	// 			if (img) {
+	// 				if (img.getAttribute('src')) {
+	// 					await buildATC(entry.target)
+	// 				}
+	// 			} else {
+	// 				await buildATC(entry.target)
+	// 			}
+	// 		}
+	// 	})
+	// }
+
+	// var OBSERVER_OPTIONS = {
+	// 	root: null,
+	// 	rootMargin: '0px',
+	// 	threshold: [0, 0.25, 0.5, 0.75, 1],
+	// }
+
+	// var OBSERVER = new IntersectionObserver(
+	// 	handleIntersection,
+	// 	OBSERVER_OPTIONS
+	// )
 
 	// const HOT_SPOTS = document.querySelectorAll('div[class*="-lp-Hotspot"]');
 
