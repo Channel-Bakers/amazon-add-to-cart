@@ -3,7 +3,7 @@
 import clipCoupon from './clipCoupon'
 // import getCookie from './getCookie';
 
-export const addToCartInBackground = (link) => {
+export const addToCartInBackground = (event, link) => {
 	event.preventDefault()
 
 	const TARGET = event.target.closest('a')

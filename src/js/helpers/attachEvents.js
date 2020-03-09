@@ -29,15 +29,15 @@ export default (link) => {
 			})
 			break
 		case 'window':
-			newNode.addEventListener('click', async () => {
+			newNode.addEventListener('click', async (event) => {
 				await addDiscount(newNode)
-				addToCartInNewWindow(link)
+				addToCartInNewWindow(event, link)
 			})
 			break
 		case 'background':
-			newNode.addEventListener('click', async () => {
+			newNode.addEventListener('click', async (event) => {
 				await addDiscount(newNode)
-				addToCartInBackground(link)
+				addToCartInBackground(event, link)
 			})
 			break
 		default:
