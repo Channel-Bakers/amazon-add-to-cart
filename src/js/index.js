@@ -103,26 +103,30 @@ const watchForNewNodes = (mutations, observer) => {
 }
 
 ;(() => {
-	const TARGET_NODE = document.body
-	const TABS = document.querySelectorAll('.lp-Tabs-Tab:not(.is-selected)')
-	const CONFIG = {childList: true, subtree: true}
-	const OBSERVER = new MutationObserver(watchForNewNodes)
-
-	if (isAmazon()) {
-		if (!document.getElementById('ad-landing-page-wrap')) {
-			OBSERVER.observe(TARGET_NODE, CONFIG)
+	try {
+		const TARGET_NODE = document.body
+		const TABS = document.querySelectorAll('.lp-Tabs-Tab:not(.is-selected)')
+		const CONFIG = {childList: true, subtree: true}
+		const OBSERVER = new MutationObserver(watchForNewNodes)
+	
+		if (isAmazon()) {
+			if (!document.getElementById('ad-landing-page-wrap')) {
+				OBSERVER.observe(TARGET_NODE, CONFIG)
+			} else {
+				waitForGlobal('CB', 'offerings', init)
+			}
 		} else {
-			waitForGlobal('CB', 'offerings', init)
+			if (!isAmazonAdvertising()) {
+				waitForGlobal('CB', 'offerings', init)
+			}
 		}
-	} else {
-		if (!isAmazonAdvertising()) {
-			waitForGlobal('CB', 'offerings', init)
-		}
-	}
-
-	TABS.forEach((tab) => {
-		tab.addEventListener('click', () => {
-			waitForGlobal('CB', 'offerings', init)
+	
+		TABS.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				waitForGlobal('CB', 'offerings', init)
+			})
 		})
-	})
+	} catch(e) {
+		alert(e.message)
+	}
 })()
