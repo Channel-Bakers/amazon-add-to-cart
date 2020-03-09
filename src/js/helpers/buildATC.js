@@ -3,14 +3,17 @@
 import buildLink from './buildLink'
 import isBuyBox from './isBuyBoxATC'
 import isLinkedImage from './isLinkedImage'
+import isCustomLink from './isCustomLink'
 import buildBuyBox from './buildBuyBox'
 import attachEvents from './attachEvents'
 
 export default async (link) => {
+	if (!isLinkedImage(link) && !isBuyBox(link) && !isCustomLink(link)) {
+		return
+	}
+
 	if (isBuyBox(link)) {
 		link = await buildBuyBox(link)
-	} else if (!isLinkedImage(link)) {
-		return
 	}
 
 	let newLink = await buildLink(
