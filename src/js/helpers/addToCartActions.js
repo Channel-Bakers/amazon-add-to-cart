@@ -99,11 +99,14 @@ export const addToCartInBackground = (event, link) => {
 				LOADER_WRAP.classList.remove('is-loading')
 				LOADER_WRAP.classList.add('is-loaded')
 
-				LOADER.innerHTML = '<div class="loading-close">x</div>'
 				LOADER.innerHTML += LOADED_ICON
 				LOADER.innerHTML += '<h4>Added to Cart</h4>'
 
 				if (window.CB && !window.CB.bundle) {
+					const cartCountElement = document.getElementById('nav-cart-count');
+					const cartCount = cartCountElement.innerHTML;
+					cartCountElement.innerHTML = Number(cartCount) + 1;
+
 					setTimeout(() => {
 						LOADER_WRAP.outerHTML = ''
 					}, 1000)
