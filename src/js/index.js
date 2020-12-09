@@ -2,7 +2,7 @@ import getCookie from './helpers/getCookie'
 import buildATC from './helpers/buildATC'
 import buildCarousels from './helpers/buildCarousels'
 import {isAmazon, isAmazonAdvertising} from './helpers/amazon'
-import '../scss/main.scss'
+// import '../scss/main.scss'
 
 const init = () => {
 	window.CB.sessionID = getCookie('session-id')

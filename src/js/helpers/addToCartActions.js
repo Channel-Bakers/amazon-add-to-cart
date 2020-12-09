@@ -99,7 +99,7 @@ export const addToCartInBackground = (event, link) => {
 				LOADER_WRAP.classList.remove('is-loading')
 				LOADER_WRAP.classList.add('is-loaded')
 
-				LOADER.innerHTML += LOADED_ICON
+				LOADER.innerHTML = LOADED_ICON
 				LOADER.innerHTML += '<h4>Added to Cart</h4>'
 
 				if (window.CB && !window.CB.bundle) {
